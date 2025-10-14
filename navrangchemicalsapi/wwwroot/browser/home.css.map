@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/pages/home/home.css"],
+  "sourcesContent": [".main-content {\n  flex: 1;\n  transition: margin-left 0.3s ease;\n}\n\n.main-content.shifted {\n  margin-left: 250px;\n}\n\n.main-content.default {\n  margin-left: 60px;\n}\n.wrapper {\n  display: flex;\n  height: 100vh;\n  overflow: hidden;\n}"],
+  "mappings": ";AAAA,CAAC;AACC,QAAM;AACN,cAAY,YAAY,KAAK;AAC/B;AAEA,CALC,YAKY,CAAC;AACZ,eAAa;AACf;AAEA,CATC,YASY,CAAC;AACZ,eAAa;AACf;AACA,CAAC;AACC,WAAS;AACT,UAAQ;AACR,YAAU;AACZ;",
+  "names": []
+}

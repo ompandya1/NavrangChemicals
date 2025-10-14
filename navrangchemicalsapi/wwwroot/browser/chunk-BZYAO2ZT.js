@@ -1,0 +1,150 @@
+import {
+  SemiFinishedService
+} from "./chunk-2OPAOAMS.js";
+import {
+  DefaultValueAccessor,
+  FormBuilder,
+  FormControlName,
+  FormGroupDirective,
+  NgControlStatus,
+  NgControlStatusGroup,
+  NumberValueAccessor,
+  ReactiveFormsModule,
+  Validators,
+  ɵNgNoValidate
+} from "./chunk-OMRRAGFO.js";
+import {
+  ActivatedRoute,
+  Router
+} from "./chunk-IW3JCNMQ.js";
+import {
+  CommonModule
+} from "./chunk-JLFMSZUT.js";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  setClassMetadata,
+  ɵsetClassDebugInfo,
+  ɵɵdefineComponent,
+  ɵɵdirectiveInject,
+  ɵɵelement,
+  ɵɵelementEnd,
+  ɵɵelementStart,
+  ɵɵlistener,
+  ɵɵproperty,
+  ɵɵtext
+} from "./chunk-QAWYXZDT.js";
+import {
+  __spreadValues
+} from "./chunk-46DXP6YY.js";
+
+// src/app/components/edit-semi-finished/edit-semi-finished.ts
+var EditSemiFinished = class _EditSemiFinished {
+  fb;
+  service;
+  route;
+  router;
+  semiFinishedForm;
+  semiFinishedId;
+  isLoading = true;
+  constructor(fb, service, route, router) {
+    this.fb = fb;
+    this.service = service;
+    this.route = route;
+    this.router = router;
+  }
+  ngOnInit() {
+    this.semiFinishedForm = this.fb.group({
+      name: ["", Validators.required],
+      price: [""]
+    });
+    const id = Number(this.route.snapshot.paramMap.get("id"));
+    if (id) {
+      this.semiFinishedId = id;
+      this.service.getProductByID(id).subscribe((product) => {
+        this.semiFinishedForm.patchValue(product);
+        this.isLoading = false;
+      });
+    } else {
+      this.isLoading = false;
+    }
+  }
+  onCancel() {
+    this.resetForm();
+    this.router.navigate(["/semi-finished"]);
+  }
+  onSubmit() {
+    if (this.semiFinishedForm.invalid)
+      return;
+    const dto = __spreadValues({}, this.semiFinishedForm.value);
+    console.log("Submitting semi-finished:", dto);
+    this.service.updateProduct(this.semiFinishedId, dto).subscribe({
+      next: () => {
+        alert("\u2705 Product updated successfully");
+        this.resetForm();
+      },
+      error: (err) => {
+        console.error("\u274C Upload failed", err);
+        alert(err.error?.message || "Upload failed. Please try again.");
+      }
+    });
+    this.router.navigate(["/semi-finished"]);
+  }
+  resetForm() {
+    this.semiFinishedForm.reset();
+  }
+  static \u0275fac = function EditSemiFinished_Factory(__ngFactoryType__) {
+    return new (__ngFactoryType__ || _EditSemiFinished)(\u0275\u0275directiveInject(FormBuilder), \u0275\u0275directiveInject(SemiFinishedService), \u0275\u0275directiveInject(ActivatedRoute), \u0275\u0275directiveInject(Router));
+  };
+  static \u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _EditSemiFinished, selectors: [["app-edit-semi-finished"]], decls: 23, vars: 1, consts: [[3, "ngSubmit", "formGroup"], [1, "card-body", "row", 2, "gap", "0"], [1, "form-group", "row"], ["for", "userName", 1, "col-sm-3", "col-form-label"], [1, "fas", "fa-user"], [1, "col-sm-9"], [1, "input-group"], ["type", "text", "id", "userName", "placeholder", "Enter product name", "formControlName", "name", 1, "form-control"], ["for", "mobileNo", 1, "col-sm-3", "col-form-label"], [1, "fas", "fa-phone"], ["type", "number", "id", "mobileNo", "placeholder", "Enter Price", "formControlName", "price", 1, "form-control"], [1, "card-footer", "d-flex", "justify-content-between", "align-items-center"], ["type", "submit", 1, "btn", "btn-info", "mb-0"], [1, "fas", "fa-save"], [1, "btn", "btn-danger", "ms-auto", 3, "click"], [1, "fas", "fa-times"]], template: function EditSemiFinished_Template(rf, ctx) {
+    if (rf & 1) {
+      \u0275\u0275elementStart(0, "form", 0);
+      \u0275\u0275listener("ngSubmit", function EditSemiFinished_Template_form_ngSubmit_0_listener() {
+        return ctx.onSubmit();
+      })("ngSubmit", function EditSemiFinished_Template_form_ngSubmit_0_listener() {
+        return ctx.onCancel();
+      });
+      \u0275\u0275elementStart(1, "div", 1)(2, "div", 2)(3, "label", 3);
+      \u0275\u0275element(4, "i", 4);
+      \u0275\u0275text(5, " Raw Material Name ");
+      \u0275\u0275elementEnd();
+      \u0275\u0275elementStart(6, "div", 5)(7, "div", 6);
+      \u0275\u0275element(8, "input", 7);
+      \u0275\u0275elementEnd()()();
+      \u0275\u0275elementStart(9, "div", 2)(10, "label", 8);
+      \u0275\u0275element(11, "i", 9);
+      \u0275\u0275text(12, " Raw Material Price ");
+      \u0275\u0275elementEnd();
+      \u0275\u0275elementStart(13, "div", 5)(14, "div", 6);
+      \u0275\u0275element(15, "input", 10);
+      \u0275\u0275elementEnd()()()();
+      \u0275\u0275elementStart(16, "div", 11)(17, "button", 12);
+      \u0275\u0275element(18, "i", 13);
+      \u0275\u0275text(19, " Update Product ");
+      \u0275\u0275elementEnd();
+      \u0275\u0275elementStart(20, "button", 14);
+      \u0275\u0275listener("click", function EditSemiFinished_Template_button_click_20_listener() {
+        return ctx.onCancel();
+      });
+      \u0275\u0275element(21, "i", 15);
+      \u0275\u0275text(22, " Cancel ");
+      \u0275\u0275elementEnd()()();
+    }
+    if (rf & 2) {
+      \u0275\u0275property("formGroup", ctx.semiFinishedForm);
+    }
+  }, dependencies: [CommonModule, ReactiveFormsModule, \u0275NgNoValidate, DefaultValueAccessor, NumberValueAccessor, NgControlStatus, NgControlStatusGroup, FormGroupDirective, FormControlName], styles: ['\n\n*[_ngcontent-%COMP%] {\n  margin: 0;\n  padding: 0;\n  box-sizing: border-box;\n}\nbody[_ngcontent-%COMP%] {\n  font-family:\n    "Inter",\n    -apple-system,\n    BlinkMacSystemFont,\n    "Segoe UI",\n    Roboto,\n    Oxygen,\n    Ubuntu,\n    Cantarell,\n    sans-serif;\n  min-height: 100vh;\n  padding: 20px;\n  color: #333;\n}\n.container-fluid[_ngcontent-%COMP%] {\n  max-width: 1200px;\n  margin: 0 auto;\n}\n.card[_ngcontent-%COMP%] {\n  background: rgba(255, 255, 255, 0.95);\n  -webkit-backdrop-filter: blur(20px);\n  backdrop-filter: blur(20px);\n  border-radius: 20px;\n  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);\n  border: 1px solid rgba(255, 255, 255, 0.2);\n  height: auto;\n  overflow: hidden;\n  transition: all 0.5s ease;\n}\n.card[_ngcontent-%COMP%]:hover {\n  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2);\n  transform: translateY(-5px);\n}\n.card-header[_ngcontent-%COMP%] {\n  background:\n    linear-gradient(\n      135deg,\n      #06b6d4,\n      #0891b2);\n  color: white;\n  padding: 25px 30px;\n  border: none;\n  position: relative;\n  overflow: hidden;\n}\n.card-header[_ngcontent-%COMP%]::before {\n  content: "";\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 70%;\n  background:\n    linear-gradient(\n      45deg,\n      transparent 30%,\n      rgba(255, 255, 255, 0.1) 50%,\n      transparent 70%);\n  transform: translateX(-100%);\n  transition: transform 0.6s;\n}\n.card[_ngcontent-%COMP%]:hover   .card-header[_ngcontent-%COMP%]::before {\n  transform: translateX(100%);\n}\n.card-title[_ngcontent-%COMP%] {\n  font-size: 24px;\n  font-weight: 600;\n  margin: 0;\n  display: flex;\n  align-items: center;\n  gap: 10px;\n}\n.card-title[_ngcontent-%COMP%]::before {\n  content: "\\f007";\n  font-family: "Font Awesome 6 Free";\n  font-weight: 900;\n  font-size: 20px;\n}\n.card-body[_ngcontent-%COMP%] {\n  padding: 20px;\n}\n.form-group[_ngcontent-%COMP%] {\n  margin-bottom: 25px;\n  opacity: 0;\n  animation: _ngcontent-%COMP%_slideInUp 0.6s ease forwards;\n  text-align: center;\n}\n.form-group[_ngcontent-%COMP%]:nth-child(1) {\n  animation-delay: 0.1s;\n}\n.form-group[_ngcontent-%COMP%]:nth-child(2) {\n  animation-delay: 0.2s;\n}\n.form-group[_ngcontent-%COMP%]:nth-child(3) {\n  animation-delay: 0.3s;\n}\n.form-group[_ngcontent-%COMP%]:nth-child(4) {\n  animation-delay: 0.4s;\n}\n.form-group[_ngcontent-%COMP%]:nth-child(5) {\n  animation-delay: 0.5s;\n}\n.form-group[_ngcontent-%COMP%]:nth-child(6) {\n  animation-delay: 0.6s;\n}\n.form-group[_ngcontent-%COMP%]:nth-child(7) {\n  animation-delay: 0.7s;\n}\n@keyframes _ngcontent-%COMP%_slideInUp {\n  from {\n    opacity: 0;\n    transform: translateY(30px);\n  }\n  to {\n    opacity: 1;\n    transform: translateY(0);\n  }\n}\n.col-form-label[_ngcontent-%COMP%] {\n  font-weight: 600;\n  color: #374151;\n  font-size: 14px;\n  text-transform: uppercase;\n  letter-spacing: 0.5px;\n  margin-bottom: 8px;\n  display: flex;\n  align-items: center;\n  gap: 8px;\n  text-align: center;\n}\n.form-control[_ngcontent-%COMP%], \n.select2[_ngcontent-%COMP%] {\n  height: 50px;\n  border: 2px solid #e5e7eb;\n  border-radius: 12px;\n  padding: 0 16px;\n  font-size: 16px;\n  transition: all 0.3s ease;\n  background: rgba(255, 255, 255, 0.8);\n  -webkit-backdrop-filter: blur(10px);\n  backdrop-filter: blur(10px);\n}\n.form-control[_ngcontent-%COMP%]:focus, \n.select2[_ngcontent-%COMP%]:focus {\n  border-color:\n    linear-gradient(\n      135deg,\n      #06b6d4,\n      #0891b2);\n  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);\n  outline: none;\n  background: white;\n  transform: translateY(-2px);\n}\n.form-control[_ngcontent-%COMP%]:hover, \n.select2[_ngcontent-%COMP%]:hover {\n  border-color: #9ca3af;\n  background: white;\n}\n.input-group[_ngcontent-%COMP%] {\n  position: relative;\n}\n.input-icon[_ngcontent-%COMP%] {\n  position: absolute;\n  right: 15px;\n  top: 50%;\n  transform: translateY(-50%);\n  color: #9ca3af;\n  transition: color 0.3s ease;\n  z-index: 10;\n}\n.form-control[_ngcontent-%COMP%]:focus    + .input-icon[_ngcontent-%COMP%] {\n  color: #17A2B8;\n}\n.menu-access-section[_ngcontent-%COMP%] {\n  background:\n    linear-gradient(\n      135deg,\n      #f8fafc 0%,\n      #e2e8f0 100%);\n  border-radius: 16px;\n  padding: 25px;\n  margin-top: 20px;\n  border: 1px solid #e2e8f0;\n}\n.menu-access-title[_ngcontent-%COMP%] {\n  font-size: 18px;\n  font-weight: 600;\n  color: #1e293b;\n  margin-bottom: 20px;\n  text-align: center;\n  position: relative;\n}\n.menu-access-title[_ngcontent-%COMP%]::after {\n  content: "";\n  position: absolute;\n  bottom: -8px;\n  left: 50%;\n  transform: translateX(-50%);\n  width: 60px;\n  height: 3px;\n  background:\n    linear-gradient(\n      135deg,\n      #06b6d4,\n      #0891b2);\n  border-radius: 2px;\n}\n.checkbox-group[_ngcontent-%COMP%] {\n  display: grid;\n  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));\n  gap: 15px;\n  margin-bottom: 20px;\n  width: 100%;\n}\n.checkbox-item[_ngcontent-%COMP%] {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  background: white;\n  border-radius: 12px;\n  padding: 15px 20px;\n  border: 2px solid transparent;\n  transition: all 0.3s ease;\n  cursor: pointer;\n  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);\n  text-align: center;\n}\n.checkbox-item[_ngcontent-%COMP%]:hover {\n  border-color:\n    linear-gradient(\n      135deg,\n      #06b6d4,\n      #0891b2);\n  transform: translateY(-2px);\n  box-shadow: 0 8px 25px rgba(79, 70, 229, 0.15);\n}\n.checkbox-item[_ngcontent-%COMP%]   input[type=checkbox][_ngcontent-%COMP%] {\n  position: absolute;\n  opacity: 0;\n  cursor: pointer;\n}\n.checkbox-item[_ngcontent-%COMP%]   label[_ngcontent-%COMP%] {\n  font-weight: 500;\n  color: #374151;\n  cursor: pointer;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  gap: 10px;\n  margin: 0;\n  position: relative;\n  padding-left: 30px;\n}\n.checkbox-item[_ngcontent-%COMP%]   label[_ngcontent-%COMP%]::before {\n  content: "";\n  position: absolute;\n  left: 0;\n  top: 50%;\n  transform: translateY(-50%);\n  width: 20px;\n  height: 20px;\n  border: 2px solid #d1d5db;\n  border-radius: 6px;\n  background: white;\n  transition: all 0.3s ease;\n}\n.checkbox-item[_ngcontent-%COMP%]   input[type=checkbox][_ngcontent-%COMP%]:checked    + label[_ngcontent-%COMP%]::before {\n  background:\n    linear-gradient(\n      135deg,\n      #06b6d4,\n      #0891b2);\n  border-color:\n    linear-gradient(\n      135deg,\n      #06b6d4,\n      #0891b2);\n}\n.checkbox-item[_ngcontent-%COMP%]   label[_ngcontent-%COMP%]::after {\n  content: "\\f00c";\n  font-family: "Font Awesome 6 Free";\n  font-weight: 900;\n  position: absolute;\n  left: 4px;\n  top: 50%;\n  transform: translateY(-50%);\n  color: white;\n  font-size: 12px;\n  opacity: 0;\n  transition: all 0.3s ease;\n}\n.checkbox-item[_ngcontent-%COMP%]   input[type=checkbox][_ngcontent-%COMP%]:checked    + label[_ngcontent-%COMP%]::after {\n  opacity: 1;\n}\n.checkbox-item[_ngcontent-%COMP%]   input[type=checkbox][_ngcontent-%COMP%]:checked    + label[_ngcontent-%COMP%] {\n  color:\n    linear-gradient(\n      135deg,\n      #06b6d4,\n      #0891b2);\n}\n.card-footer[_ngcontent-%COMP%] {\n  padding: 25px 40px;\n  background: rgba(248, 250, 252, 0.8);\n  border-top: 1px solid #e5e7eb;\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n}\n.btn[_ngcontent-%COMP%] {\n  padding: 12px 30px;\n  border-radius: 12px;\n  font-weight: 600;\n  font-size: 16px;\n  border: none;\n  cursor: pointer;\n  transition: all 0.3s ease;\n  text-decoration: none;\n  display: inline-flex;\n  align-items: center;\n  gap: 8px;\n  position: relative;\n  overflow: hidden;\n}\n.btn[_ngcontent-%COMP%]::before {\n  content: "";\n  position: absolute;\n  top: 0;\n  left: -100%;\n  width: 100%;\n  height: 100%;\n  background:\n    linear-gradient(\n      90deg,\n      transparent,\n      rgba(255, 255, 255, 0.2),\n      transparent);\n  transition: left 0.5s;\n}\n.btn[_ngcontent-%COMP%]:hover::before {\n  left: 100%;\n}\n.btn-info[_ngcontent-%COMP%] {\n  background:\n    linear-gradient(\n      135deg,\n      #06b6d4,\n      #0891b2);\n  color: white;\n  box-shadow: 0 4px 15px rgba(6, 182, 212, 0.3);\n}\n.btn-info[_ngcontent-%COMP%]:hover {\n  background:\n    linear-gradient(\n      135deg,\n      #0891b2,\n      #0e7490);\n  transform: translateY(-2px);\n  box-shadow: 0 8px 25px rgba(6, 182, 212, 0.4);\n}\n.btn-danger[_ngcontent-%COMP%] {\n  background:\n    linear-gradient(\n      135deg,\n      #ef4444,\n      #dc2626);\n  color: white;\n  box-shadow: 0 4px 15px rgba(239, 68, 68, 0.3);\n}\n.btn-danger[_ngcontent-%COMP%]:hover {\n  background:\n    linear-gradient(\n      135deg,\n      #dc2626,\n      #b91c1c);\n  transform: translateY(-2px);\n  box-shadow: 0 8px 25px rgba(239, 68, 68, 0.4);\n}\n.field-validation-error[_ngcontent-%COMP%] {\n  color: #ef4444;\n  font-size: 14px;\n  margin-top: 5px;\n  display: block;\n  animation: _ngcontent-%COMP%_shake 0.5s ease-in-out;\n}\n@keyframes _ngcontent-%COMP%_shake {\n  0%, 100% {\n    transform: translateX(0);\n  }\n  25% {\n    transform: translateX(-5px);\n  }\n  75% {\n    transform: translateX(5px);\n  }\n}\n.loading[_ngcontent-%COMP%] {\n  position: relative;\n  pointer-events: none;\n}\n.loading[_ngcontent-%COMP%]::after {\n  content: "";\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n  width: 20px;\n  height: 20px;\n  border: 2px solid transparent;\n  border-top: 2px solid white;\n  border-radius: 50%;\n  animation: _ngcontent-%COMP%_spin 1s linear infinite;\n}\n@keyframes _ngcontent-%COMP%_spin {\n  to {\n    transform: translate(-50%, -50%) rotate(360deg);\n  }\n}\n@media (max-width: 768px) {\n  .container-fluid[_ngcontent-%COMP%] {\n    padding: 10px;\n  }\n  .card-body[_ngcontent-%COMP%] {\n    padding: 20px;\n  }\n  .checkbox-group[_ngcontent-%COMP%] {\n    grid-template-columns: 1fr;\n  }\n  .card-footer[_ngcontent-%COMP%] {\n    padding: 20px;\n    flex-direction: column;\n    gap: 10px;\n  }\n  .btn[_ngcontent-%COMP%] {\n    width: 100%;\n    justify-content: center;\n  }\n}\n.success-message[_ngcontent-%COMP%] {\n  background:\n    linear-gradient(\n      135deg,\n      #10b981,\n      #059669);\n  color: white;\n  padding: 15px 20px;\n  border-radius: 12px;\n  margin-bottom: 20px;\n  display: none;\n  animation: _ngcontent-%COMP%_slideInDown 0.5s ease;\n}\n@keyframes _ngcontent-%COMP%_slideInDown {\n  from {\n    opacity: 0;\n    transform: translateY(-20px);\n  }\n  to {\n    opacity: 1;\n    transform: translateY(0);\n  }\n}\n@media (min-width: 1024px) {\n  .card-body[_ngcontent-%COMP%] {\n    display: flex;\n    flex-direction: row;\n    flex-wrap: wrap;\n    gap: 24px;\n  }\n  .form-group[_ngcontent-%COMP%] {\n    flex: 1 1 45%;\n  }\n}\n/*# sourceMappingURL=edit-semi-finished.css.map */'], changeDetection: 0 });
+};
+(() => {
+  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(EditSemiFinished, [{
+    type: Component,
+    args: [{ selector: "app-edit-semi-finished", imports: [CommonModule, ReactiveFormsModule], changeDetection: ChangeDetectionStrategy.OnPush, template: '\n<form [formGroup]="semiFinishedForm" (ngSubmit)="onSubmit()" (ngSubmit)="onCancel()">\n  <div class="card-body row" style="gap: 0">\n    <!-- Product Name -->\n    <div class="form-group row">\n      <label for="userName" class="col-sm-3 col-form-label">\n        <i class="fas fa-user"></i> Raw Material Name\n      </label>\n      <div class="col-sm-9">\n        <div class="input-group">\n          <input\n            type="text"\n            class="form-control"\n            id="userName"\n            placeholder="Enter product name"\n            formControlName="name"\n          />\n        </div>\n      </div>\n    </div>\n    <!-- Product Price -->\n    <div class="form-group row">\n      <label for="mobileNo" class="col-sm-3 col-form-label">\n        <i class="fas fa-phone"></i> Raw Material Price\n      </label>\n      <div class="col-sm-9">\n        <div class="input-group">\n          <input\n            type="number"\n            class="form-control"\n            id="mobileNo"\n            placeholder="Enter Price"\n            formControlName="price"\n          />\n        </div>\n      </div>\n    </div>    \n  </div>\n\n  <div class="card-footer d-flex justify-content-between align-items-center">\n    <button type="submit" class="btn btn-info mb-0">\n      <i class="fas fa-save"></i> Update Product\n    </button>\n    <button (click)="onCancel()" class="btn btn-danger ms-auto">\n      <i class="fas fa-times"></i> Cancel\n    </button>\n  </div>\n</form>\n', styles: ['/* src/app/components/edit-semi-finished/edit-semi-finished.css */\n* {\n  margin: 0;\n  padding: 0;\n  box-sizing: border-box;\n}\nbody {\n  font-family:\n    "Inter",\n    -apple-system,\n    BlinkMacSystemFont,\n    "Segoe UI",\n    Roboto,\n    Oxygen,\n    Ubuntu,\n    Cantarell,\n    sans-serif;\n  min-height: 100vh;\n  padding: 20px;\n  color: #333;\n}\n.container-fluid {\n  max-width: 1200px;\n  margin: 0 auto;\n}\n.card {\n  background: rgba(255, 255, 255, 0.95);\n  -webkit-backdrop-filter: blur(20px);\n  backdrop-filter: blur(20px);\n  border-radius: 20px;\n  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);\n  border: 1px solid rgba(255, 255, 255, 0.2);\n  height: auto;\n  overflow: hidden;\n  transition: all 0.5s ease;\n}\n.card:hover {\n  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2);\n  transform: translateY(-5px);\n}\n.card-header {\n  background:\n    linear-gradient(\n      135deg,\n      #06b6d4,\n      #0891b2);\n  color: white;\n  padding: 25px 30px;\n  border: none;\n  position: relative;\n  overflow: hidden;\n}\n.card-header::before {\n  content: "";\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 70%;\n  background:\n    linear-gradient(\n      45deg,\n      transparent 30%,\n      rgba(255, 255, 255, 0.1) 50%,\n      transparent 70%);\n  transform: translateX(-100%);\n  transition: transform 0.6s;\n}\n.card:hover .card-header::before {\n  transform: translateX(100%);\n}\n.card-title {\n  font-size: 24px;\n  font-weight: 600;\n  margin: 0;\n  display: flex;\n  align-items: center;\n  gap: 10px;\n}\n.card-title::before {\n  content: "\\f007";\n  font-family: "Font Awesome 6 Free";\n  font-weight: 900;\n  font-size: 20px;\n}\n.card-body {\n  padding: 20px;\n}\n.form-group {\n  margin-bottom: 25px;\n  opacity: 0;\n  animation: slideInUp 0.6s ease forwards;\n  text-align: center;\n}\n.form-group:nth-child(1) {\n  animation-delay: 0.1s;\n}\n.form-group:nth-child(2) {\n  animation-delay: 0.2s;\n}\n.form-group:nth-child(3) {\n  animation-delay: 0.3s;\n}\n.form-group:nth-child(4) {\n  animation-delay: 0.4s;\n}\n.form-group:nth-child(5) {\n  animation-delay: 0.5s;\n}\n.form-group:nth-child(6) {\n  animation-delay: 0.6s;\n}\n.form-group:nth-child(7) {\n  animation-delay: 0.7s;\n}\n@keyframes slideInUp {\n  from {\n    opacity: 0;\n    transform: translateY(30px);\n  }\n  to {\n    opacity: 1;\n    transform: translateY(0);\n  }\n}\n.col-form-label {\n  font-weight: 600;\n  color: #374151;\n  font-size: 14px;\n  text-transform: uppercase;\n  letter-spacing: 0.5px;\n  margin-bottom: 8px;\n  display: flex;\n  align-items: center;\n  gap: 8px;\n  text-align: center;\n}\n.form-control,\n.select2 {\n  height: 50px;\n  border: 2px solid #e5e7eb;\n  border-radius: 12px;\n  padding: 0 16px;\n  font-size: 16px;\n  transition: all 0.3s ease;\n  background: rgba(255, 255, 255, 0.8);\n  -webkit-backdrop-filter: blur(10px);\n  backdrop-filter: blur(10px);\n}\n.form-control:focus,\n.select2:focus {\n  border-color:\n    linear-gradient(\n      135deg,\n      #06b6d4,\n      #0891b2);\n  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);\n  outline: none;\n  background: white;\n  transform: translateY(-2px);\n}\n.form-control:hover,\n.select2:hover {\n  border-color: #9ca3af;\n  background: white;\n}\n.input-group {\n  position: relative;\n}\n.input-icon {\n  position: absolute;\n  right: 15px;\n  top: 50%;\n  transform: translateY(-50%);\n  color: #9ca3af;\n  transition: color 0.3s ease;\n  z-index: 10;\n}\n.form-control:focus + .input-icon {\n  color: #17A2B8;\n}\n.menu-access-section {\n  background:\n    linear-gradient(\n      135deg,\n      #f8fafc 0%,\n      #e2e8f0 100%);\n  border-radius: 16px;\n  padding: 25px;\n  margin-top: 20px;\n  border: 1px solid #e2e8f0;\n}\n.menu-access-title {\n  font-size: 18px;\n  font-weight: 600;\n  color: #1e293b;\n  margin-bottom: 20px;\n  text-align: center;\n  position: relative;\n}\n.menu-access-title::after {\n  content: "";\n  position: absolute;\n  bottom: -8px;\n  left: 50%;\n  transform: translateX(-50%);\n  width: 60px;\n  height: 3px;\n  background:\n    linear-gradient(\n      135deg,\n      #06b6d4,\n      #0891b2);\n  border-radius: 2px;\n}\n.checkbox-group {\n  display: grid;\n  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));\n  gap: 15px;\n  margin-bottom: 20px;\n  width: 100%;\n}\n.checkbox-item {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  background: white;\n  border-radius: 12px;\n  padding: 15px 20px;\n  border: 2px solid transparent;\n  transition: all 0.3s ease;\n  cursor: pointer;\n  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);\n  text-align: center;\n}\n.checkbox-item:hover {\n  border-color:\n    linear-gradient(\n      135deg,\n      #06b6d4,\n      #0891b2);\n  transform: translateY(-2px);\n  box-shadow: 0 8px 25px rgba(79, 70, 229, 0.15);\n}\n.checkbox-item input[type=checkbox] {\n  position: absolute;\n  opacity: 0;\n  cursor: pointer;\n}\n.checkbox-item label {\n  font-weight: 500;\n  color: #374151;\n  cursor: pointer;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  gap: 10px;\n  margin: 0;\n  position: relative;\n  padding-left: 30px;\n}\n.checkbox-item label::before {\n  content: "";\n  position: absolute;\n  left: 0;\n  top: 50%;\n  transform: translateY(-50%);\n  width: 20px;\n  height: 20px;\n  border: 2px solid #d1d5db;\n  border-radius: 6px;\n  background: white;\n  transition: all 0.3s ease;\n}\n.checkbox-item input[type=checkbox]:checked + label::before {\n  background:\n    linear-gradient(\n      135deg,\n      #06b6d4,\n      #0891b2);\n  border-color:\n    linear-gradient(\n      135deg,\n      #06b6d4,\n      #0891b2);\n}\n.checkbox-item label::after {\n  content: "\\f00c";\n  font-family: "Font Awesome 6 Free";\n  font-weight: 900;\n  position: absolute;\n  left: 4px;\n  top: 50%;\n  transform: translateY(-50%);\n  color: white;\n  font-size: 12px;\n  opacity: 0;\n  transition: all 0.3s ease;\n}\n.checkbox-item input[type=checkbox]:checked + label::after {\n  opacity: 1;\n}\n.checkbox-item input[type=checkbox]:checked + label {\n  color:\n    linear-gradient(\n      135deg,\n      #06b6d4,\n      #0891b2);\n}\n.card-footer {\n  padding: 25px 40px;\n  background: rgba(248, 250, 252, 0.8);\n  border-top: 1px solid #e5e7eb;\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n}\n.btn {\n  padding: 12px 30px;\n  border-radius: 12px;\n  font-weight: 600;\n  font-size: 16px;\n  border: none;\n  cursor: pointer;\n  transition: all 0.3s ease;\n  text-decoration: none;\n  display: inline-flex;\n  align-items: center;\n  gap: 8px;\n  position: relative;\n  overflow: hidden;\n}\n.btn::before {\n  content: "";\n  position: absolute;\n  top: 0;\n  left: -100%;\n  width: 100%;\n  height: 100%;\n  background:\n    linear-gradient(\n      90deg,\n      transparent,\n      rgba(255, 255, 255, 0.2),\n      transparent);\n  transition: left 0.5s;\n}\n.btn:hover::before {\n  left: 100%;\n}\n.btn-info {\n  background:\n    linear-gradient(\n      135deg,\n      #06b6d4,\n      #0891b2);\n  color: white;\n  box-shadow: 0 4px 15px rgba(6, 182, 212, 0.3);\n}\n.btn-info:hover {\n  background:\n    linear-gradient(\n      135deg,\n      #0891b2,\n      #0e7490);\n  transform: translateY(-2px);\n  box-shadow: 0 8px 25px rgba(6, 182, 212, 0.4);\n}\n.btn-danger {\n  background:\n    linear-gradient(\n      135deg,\n      #ef4444,\n      #dc2626);\n  color: white;\n  box-shadow: 0 4px 15px rgba(239, 68, 68, 0.3);\n}\n.btn-danger:hover {\n  background:\n    linear-gradient(\n      135deg,\n      #dc2626,\n      #b91c1c);\n  transform: translateY(-2px);\n  box-shadow: 0 8px 25px rgba(239, 68, 68, 0.4);\n}\n.field-validation-error {\n  color: #ef4444;\n  font-size: 14px;\n  margin-top: 5px;\n  display: block;\n  animation: shake 0.5s ease-in-out;\n}\n@keyframes shake {\n  0%, 100% {\n    transform: translateX(0);\n  }\n  25% {\n    transform: translateX(-5px);\n  }\n  75% {\n    transform: translateX(5px);\n  }\n}\n.loading {\n  position: relative;\n  pointer-events: none;\n}\n.loading::after {\n  content: "";\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n  width: 20px;\n  height: 20px;\n  border: 2px solid transparent;\n  border-top: 2px solid white;\n  border-radius: 50%;\n  animation: spin 1s linear infinite;\n}\n@keyframes spin {\n  to {\n    transform: translate(-50%, -50%) rotate(360deg);\n  }\n}\n@media (max-width: 768px) {\n  .container-fluid {\n    padding: 10px;\n  }\n  .card-body {\n    padding: 20px;\n  }\n  .checkbox-group {\n    grid-template-columns: 1fr;\n  }\n  .card-footer {\n    padding: 20px;\n    flex-direction: column;\n    gap: 10px;\n  }\n  .btn {\n    width: 100%;\n    justify-content: center;\n  }\n}\n.success-message {\n  background:\n    linear-gradient(\n      135deg,\n      #10b981,\n      #059669);\n  color: white;\n  padding: 15px 20px;\n  border-radius: 12px;\n  margin-bottom: 20px;\n  display: none;\n  animation: slideInDown 0.5s ease;\n}\n@keyframes slideInDown {\n  from {\n    opacity: 0;\n    transform: translateY(-20px);\n  }\n  to {\n    opacity: 1;\n    transform: translateY(0);\n  }\n}\n@media (min-width: 1024px) {\n  .card-body {\n    display: flex;\n    flex-direction: row;\n    flex-wrap: wrap;\n    gap: 24px;\n  }\n  .form-group {\n    flex: 1 1 45%;\n  }\n}\n/*# sourceMappingURL=edit-semi-finished.css.map */\n'] }]
+  }], () => [{ type: FormBuilder }, { type: SemiFinishedService }, { type: ActivatedRoute }, { type: Router }], null);
+})();
+(() => {
+  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(EditSemiFinished, { className: "EditSemiFinished", filePath: "src/app/components/edit-semi-finished/edit-semi-finished.ts", lineNumber: 14 });
+})();
+export {
+  EditSemiFinished
+};
+//# sourceMappingURL=chunk-BZYAO2ZT.js.map

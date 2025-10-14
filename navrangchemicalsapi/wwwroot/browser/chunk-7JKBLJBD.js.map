@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/services/party-service.ts"],
+  "sourcesContent": ["import { HttpClient } from '@angular/common/http';\nimport { Injectable } from '@angular/core';\nimport { Observable } from 'rxjs';\nimport { party } from '../pages/party/party';\nimport { environment } from '../environments/environments';\n@Injectable({\n  providedIn: 'root'\n})\nexport class PartyService {\n  private ApiUrl = `${environment.apiUrl}/party/`;\n\n  constructor(private http: HttpClient) {}\n\n  getParties(): Observable<party[]>{\n    return this.http.get<party[]>(`${this.ApiUrl}getallparty`);\n  }\n\n  CreateParties(party: party): Observable<party> {\n  return this.http.post<party>(`${this.ApiUrl}create-party`, party);\n}\n  getPartyById(id: number): Observable<party> {\n  return this.http.get<party>(`${this.ApiUrl}getparty/${id}`);\n}\n\n  editParty(id: number, party: party): Observable<party> {\n  return this.http.put<party>(`${this.ApiUrl}edit-party/${id}`, party);\n}\n}\n"],
+  "mappings": ";;;;;;;;;;;;AAQM,IAAO,eAAP,MAAO,cAAY;EAGH;EAFZ,SAAS,GAAG,YAAY,MAAM;EAEtC,YAAoB,MAAgB;AAAhB,SAAA,OAAA;EAAmB;EAEvC,aAAU;AACR,WAAO,KAAK,KAAK,IAAa,GAAG,KAAK,MAAM,aAAa;EAC3D;EAEA,cAAc,OAAY;AAC1B,WAAO,KAAK,KAAK,KAAY,GAAG,KAAK,MAAM,gBAAgB,KAAK;EAClE;EACE,aAAa,IAAU;AACvB,WAAO,KAAK,KAAK,IAAW,GAAG,KAAK,MAAM,YAAY,EAAE,EAAE;EAC5D;EAEE,UAAU,IAAY,OAAY;AAClC,WAAO,KAAK,KAAK,IAAW,GAAG,KAAK,MAAM,cAAc,EAAE,IAAI,KAAK;EACrE;;qCAlBa,eAAY,mBAAA,UAAA,CAAA;EAAA;4EAAZ,eAAY,SAAZ,cAAY,WAAA,YAFX,OAAM,CAAA;;;sEAEP,cAAY,CAAA;UAHxB;WAAW;MACV,YAAY;KACb;;;",
+  "names": []
+}

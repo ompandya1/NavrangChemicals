@@ -1,0 +1,187 @@
+import {
+  ProductService
+} from "./chunk-XUIXJ5QK.js";
+import {
+  DefaultValueAccessor,
+  FormBuilder,
+  FormControlName,
+  FormGroupDirective,
+  NgControlStatus,
+  NgControlStatusGroup,
+  NgSelectOption,
+  NumberValueAccessor,
+  ReactiveFormsModule,
+  SelectControlValueAccessor,
+  Validators,
+  ɵNgNoValidate,
+  ɵNgSelectMultipleOption
+} from "./chunk-OMRRAGFO.js";
+import {
+  Router
+} from "./chunk-IW3JCNMQ.js";
+import {
+  CommonModule
+} from "./chunk-JLFMSZUT.js";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  setClassMetadata,
+  ɵsetClassDebugInfo,
+  ɵɵdefineComponent,
+  ɵɵdirectiveInject,
+  ɵɵelement,
+  ɵɵelementEnd,
+  ɵɵelementStart,
+  ɵɵlistener,
+  ɵɵproperty,
+  ɵɵtext
+} from "./chunk-QAWYXZDT.js";
+import "./chunk-46DXP6YY.js";
+
+// src/app/components/add-product/add-product.ts
+var AddProduct = class _AddProduct {
+  service;
+  fb;
+  router;
+  productForm;
+  constructor(service, fb, router) {
+    this.service = service;
+    this.fb = fb;
+    this.router = router;
+    this.productForm = this.fb.group({
+      productName: ["", Validators.required],
+      catagoryName: ["", Validators.required],
+      HSNcode: ["", Validators.required],
+      companyName: ["", Validators.required],
+      productPrice: ["", Validators.required]
+    });
+  }
+  onSubmit() {
+    console.log("Submit clicked");
+    if (this.productForm.invalid) {
+      this.productForm.markAllAsTouched();
+      return;
+    }
+    console.log("Form value:", this.productForm.value);
+    this.service.addProduct(this.productForm.value).subscribe({
+      next: () => {
+        alert("\u2705 Product created successfully");
+        this.resetForm();
+        this.router.navigate(["/product-master"]);
+      },
+      error: (err) => {
+        console.error("\u274C Upload failed", err);
+        alert(err.error?.message || "Upload failed. Please try again.");
+      }
+    });
+  }
+  resetForm() {
+    this.productForm.reset();
+  }
+  static \u0275fac = function AddProduct_Factory(__ngFactoryType__) {
+    return new (__ngFactoryType__ || _AddProduct)(\u0275\u0275directiveInject(ProductService), \u0275\u0275directiveInject(FormBuilder), \u0275\u0275directiveInject(Router));
+  };
+  static \u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _AddProduct, selectors: [["app-add-product"]], decls: 70, vars: 1, consts: [[3, "ngSubmit", "formGroup"], [1, "card-body", "row", 2, "gap", "0"], [1, "form-group", "row"], ["for", "userName", 1, "col-sm-3", "col-form-label"], [1, "fas", "fa-user"], [1, "col-sm-7"], [1, "input-group"], ["type", "text", "id", "userName", "placeholder", "Enter product name", "formControlName", "productName", 1, "form-control"], ["for", "email", 1, "col-sm-3", "col-form-label"], [1, "fas", "fa-envelope"], ["type", "text", "id", "email", "placeholder", "Enter HSN code", "formControlName", "HSNcode", 1, "form-control"], ["for", "mobileNo", 1, "col-sm-3", "col-form-label"], [1, "fas", "fa-phone"], ["type", "number", "id", "mobileNo", "placeholder", "Enter Price", "formControlName", "productPrice", 1, "form-control"], ["for", "userRoleId", 1, "col-sm-3", "col-form-label"], [1, "fas", "fa-user-tag"], ["id", "userRoleId", "formControlName", "catagoryName", 1, "form-control", "select2"], ["value", ""], ["value", "Yellow"], ["value", "Orange"], ["value", "Golden"], ["value", "Red"], ["value", "Magenta"], ["value", "Blue"], ["value", "Black"], ["value", "Matching"], ["value", "Scarlet"], ["for", "companyId", 1, "col-1-5", "mx-0", "col-form-label"], [1, "fas", "fa-building"], ["id", "companyId", "formControlName", "companyName", 1, "form-control", "select2"], ["value", "Navrang"], ["value", "Navkar"], ["value", "Navtex"], [1, "card-footer", "d-flex", "justify-content-between", "align-items-center"], ["type", "submit", 1, "btn", "btn-info", "mb-0"], [1, "fas", "fa-save"], ["routerLink", "/users", 1, "btn", "btn-danger", "ms-auto"], [1, "fas", "fa-times"]], template: function AddProduct_Template(rf, ctx) {
+    if (rf & 1) {
+      \u0275\u0275elementStart(0, "form", 0);
+      \u0275\u0275listener("ngSubmit", function AddProduct_Template_form_ngSubmit_0_listener() {
+        return ctx.onSubmit();
+      });
+      \u0275\u0275elementStart(1, "div", 1)(2, "div", 2)(3, "label", 3);
+      \u0275\u0275element(4, "i", 4);
+      \u0275\u0275text(5, " Product Name ");
+      \u0275\u0275elementEnd();
+      \u0275\u0275elementStart(6, "div", 5)(7, "div", 6);
+      \u0275\u0275element(8, "input", 7);
+      \u0275\u0275elementEnd()()();
+      \u0275\u0275elementStart(9, "div", 2)(10, "label", 8);
+      \u0275\u0275element(11, "i", 9);
+      \u0275\u0275text(12, " HSN Code ");
+      \u0275\u0275elementEnd();
+      \u0275\u0275elementStart(13, "div", 5)(14, "div", 6);
+      \u0275\u0275element(15, "input", 10);
+      \u0275\u0275elementEnd()()();
+      \u0275\u0275elementStart(16, "div", 2)(17, "label", 11);
+      \u0275\u0275element(18, "i", 12);
+      \u0275\u0275text(19, " Product Price ");
+      \u0275\u0275elementEnd();
+      \u0275\u0275elementStart(20, "div", 5)(21, "div", 6);
+      \u0275\u0275element(22, "input", 13);
+      \u0275\u0275elementEnd()()();
+      \u0275\u0275elementStart(23, "div", 2)(24, "label", 14);
+      \u0275\u0275element(25, "i", 15);
+      \u0275\u0275text(26, " Product Catagory ");
+      \u0275\u0275elementEnd();
+      \u0275\u0275elementStart(27, "div", 5)(28, "select", 16)(29, "option", 17);
+      \u0275\u0275text(30, "Select Catagory");
+      \u0275\u0275elementEnd();
+      \u0275\u0275elementStart(31, "option", 18);
+      \u0275\u0275text(32, "Yellow");
+      \u0275\u0275elementEnd();
+      \u0275\u0275elementStart(33, "option", 19);
+      \u0275\u0275text(34, "Orange");
+      \u0275\u0275elementEnd();
+      \u0275\u0275elementStart(35, "option", 20);
+      \u0275\u0275text(36, "Golden");
+      \u0275\u0275elementEnd();
+      \u0275\u0275elementStart(37, "option", 21);
+      \u0275\u0275text(38, "Red");
+      \u0275\u0275elementEnd();
+      \u0275\u0275elementStart(39, "option", 22);
+      \u0275\u0275text(40, "Magenta");
+      \u0275\u0275elementEnd();
+      \u0275\u0275elementStart(41, "option", 23);
+      \u0275\u0275text(42, "Blue");
+      \u0275\u0275elementEnd();
+      \u0275\u0275elementStart(43, "option", 24);
+      \u0275\u0275text(44, "Black");
+      \u0275\u0275elementEnd();
+      \u0275\u0275elementStart(45, "option", 25);
+      \u0275\u0275text(46, "Matching");
+      \u0275\u0275elementEnd();
+      \u0275\u0275elementStart(47, "option", 26);
+      \u0275\u0275text(48, "Scarlet");
+      \u0275\u0275elementEnd()()()();
+      \u0275\u0275elementStart(49, "div", 2)(50, "label", 27);
+      \u0275\u0275element(51, "i", 28);
+      \u0275\u0275text(52, " Company ");
+      \u0275\u0275elementEnd();
+      \u0275\u0275elementStart(53, "div", 5)(54, "select", 29)(55, "option", 17);
+      \u0275\u0275text(56, "Select Company");
+      \u0275\u0275elementEnd();
+      \u0275\u0275elementStart(57, "option", 30);
+      \u0275\u0275text(58, "Navrang");
+      \u0275\u0275elementEnd();
+      \u0275\u0275elementStart(59, "option", 31);
+      \u0275\u0275text(60, "Navkar");
+      \u0275\u0275elementEnd();
+      \u0275\u0275elementStart(61, "option", 32);
+      \u0275\u0275text(62, "Navtex");
+      \u0275\u0275elementEnd()()()()();
+      \u0275\u0275elementStart(63, "div", 33)(64, "button", 34);
+      \u0275\u0275element(65, "i", 35);
+      \u0275\u0275text(66, " Add Product ");
+      \u0275\u0275elementEnd();
+      \u0275\u0275elementStart(67, "a", 36);
+      \u0275\u0275element(68, "i", 37);
+      \u0275\u0275text(69, " Cancel ");
+      \u0275\u0275elementEnd()()();
+    }
+    if (rf & 2) {
+      \u0275\u0275property("formGroup", ctx.productForm);
+    }
+  }, dependencies: [CommonModule, ReactiveFormsModule, \u0275NgNoValidate, NgSelectOption, \u0275NgSelectMultipleOption, DefaultValueAccessor, NumberValueAccessor, SelectControlValueAccessor, NgControlStatus, NgControlStatusGroup, FormGroupDirective, FormControlName], styles: ['\n\n*[_ngcontent-%COMP%] {\n  margin: 0;\n  padding: 0;\n  box-sizing: border-box;\n}\nbody[_ngcontent-%COMP%] {\n  font-family:\n    "Inter",\n    -apple-system,\n    BlinkMacSystemFont,\n    "Segoe UI",\n    Roboto,\n    Oxygen,\n    Ubuntu,\n    Cantarell,\n    sans-serif;\n  min-height: 100vh;\n  padding: 20px;\n  color: #333;\n}\n.container-fluid[_ngcontent-%COMP%] {\n  max-width: 1200px;\n  margin: 0 auto;\n}\n.card[_ngcontent-%COMP%] {\n  background: rgba(255, 255, 255, 0.95);\n  -webkit-backdrop-filter: blur(20px);\n  backdrop-filter: blur(20px);\n  border-radius: 20px;\n  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);\n  border: 1px solid rgba(255, 255, 255, 0.2);\n  height: auto;\n  overflow: hidden;\n  transition: all 0.5s ease;\n}\n.card[_ngcontent-%COMP%]:hover {\n  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2);\n  transform: translateY(-5px);\n}\n.card-header[_ngcontent-%COMP%] {\n  background:\n    linear-gradient(\n      135deg,\n      #06b6d4,\n      #0891b2);\n  color: white;\n  padding: 25px 30px;\n  border: none;\n  position: relative;\n  overflow: hidden;\n}\n.card-header[_ngcontent-%COMP%]::before {\n  content: "";\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 70%;\n  background:\n    linear-gradient(\n      45deg,\n      transparent 30%,\n      rgba(255, 255, 255, 0.1) 50%,\n      transparent 70%);\n  transform: translateX(-100%);\n  transition: transform 0.6s;\n}\n.card[_ngcontent-%COMP%]:hover   .card-header[_ngcontent-%COMP%]::before {\n  transform: translateX(100%);\n}\n.card-title[_ngcontent-%COMP%] {\n  font-size: 24px;\n  font-weight: 600;\n  margin: 0;\n  display: flex;\n  align-items: center;\n  gap: 10px;\n}\n.card-title[_ngcontent-%COMP%]::before {\n  content: "\\f007";\n  font-family: "Font Awesome 6 Free";\n  font-weight: 900;\n  font-size: 20px;\n}\n.card-body[_ngcontent-%COMP%] {\n  padding: 20px;\n}\n.form-group[_ngcontent-%COMP%] {\n  margin-bottom: 25px;\n  opacity: 0;\n  animation: _ngcontent-%COMP%_slideInUp 0.6s ease forwards;\n  text-align: center;\n}\n.form-group[_ngcontent-%COMP%]:nth-child(1) {\n  animation-delay: 0.1s;\n}\n.form-group[_ngcontent-%COMP%]:nth-child(2) {\n  animation-delay: 0.2s;\n}\n.form-group[_ngcontent-%COMP%]:nth-child(3) {\n  animation-delay: 0.3s;\n}\n.form-group[_ngcontent-%COMP%]:nth-child(4) {\n  animation-delay: 0.4s;\n}\n.form-group[_ngcontent-%COMP%]:nth-child(5) {\n  animation-delay: 0.5s;\n}\n.form-group[_ngcontent-%COMP%]:nth-child(6) {\n  animation-delay: 0.6s;\n}\n.form-group[_ngcontent-%COMP%]:nth-child(7) {\n  animation-delay: 0.7s;\n}\n@keyframes _ngcontent-%COMP%_slideInUp {\n  from {\n    opacity: 0;\n    transform: translateY(30px);\n  }\n  to {\n    opacity: 1;\n    transform: translateY(0);\n  }\n}\n.col-form-label[_ngcontent-%COMP%] {\n  font-weight: 600;\n  color: #374151;\n  font-size: 14px;\n  text-transform: uppercase;\n  letter-spacing: 0.5px;\n  margin-bottom: 8px;\n  display: flex;\n  align-items: center;\n  gap: 8px;\n  text-align: center;\n}\n.form-control[_ngcontent-%COMP%], \n.select2[_ngcontent-%COMP%] {\n  height: 50px;\n  border: 2px solid #e5e7eb;\n  border-radius: 12px;\n  padding: 0 16px;\n  font-size: 16px;\n  transition: all 0.3s ease;\n  background: rgba(255, 255, 255, 0.8);\n  -webkit-backdrop-filter: blur(10px);\n  backdrop-filter: blur(10px);\n}\n.form-control[_ngcontent-%COMP%]:focus, \n.select2[_ngcontent-%COMP%]:focus {\n  border-color:\n    linear-gradient(\n      135deg,\n      #06b6d4,\n      #0891b2);\n  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);\n  outline: none;\n  background: white;\n  transform: translateY(-2px);\n}\n.form-control[_ngcontent-%COMP%]:hover, \n.select2[_ngcontent-%COMP%]:hover {\n  border-color: #9ca3af;\n  background: white;\n}\n.input-group[_ngcontent-%COMP%] {\n  position: relative;\n}\n.input-icon[_ngcontent-%COMP%] {\n  position: absolute;\n  right: 15px;\n  top: 50%;\n  transform: translateY(-50%);\n  color: #9ca3af;\n  transition: color 0.3s ease;\n  z-index: 10;\n}\n.form-control[_ngcontent-%COMP%]:focus    + .input-icon[_ngcontent-%COMP%] {\n  color: #17A2B8;\n}\n.menu-access-section[_ngcontent-%COMP%] {\n  background:\n    linear-gradient(\n      135deg,\n      #f8fafc 0%,\n      #e2e8f0 100%);\n  border-radius: 16px;\n  padding: 25px;\n  margin-top: 20px;\n  border: 1px solid #e2e8f0;\n}\n.menu-access-title[_ngcontent-%COMP%] {\n  font-size: 18px;\n  font-weight: 600;\n  color: #1e293b;\n  margin-bottom: 20px;\n  text-align: center;\n  position: relative;\n}\n.menu-access-title[_ngcontent-%COMP%]::after {\n  content: "";\n  position: absolute;\n  bottom: -8px;\n  left: 50%;\n  transform: translateX(-50%);\n  width: 60px;\n  height: 3px;\n  background:\n    linear-gradient(\n      135deg,\n      #06b6d4,\n      #0891b2);\n  border-radius: 2px;\n}\n.checkbox-group[_ngcontent-%COMP%] {\n  display: grid;\n  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));\n  gap: 15px;\n  margin-bottom: 20px;\n  width: 100%;\n}\n.checkbox-item[_ngcontent-%COMP%] {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  background: white;\n  border-radius: 12px;\n  padding: 15px 20px;\n  border: 2px solid transparent;\n  transition: all 0.3s ease;\n  cursor: pointer;\n  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);\n  text-align: center;\n}\n.checkbox-item[_ngcontent-%COMP%]:hover {\n  border-color:\n    linear-gradient(\n      135deg,\n      #06b6d4,\n      #0891b2);\n  transform: translateY(-2px);\n  box-shadow: 0 8px 25px rgba(79, 70, 229, 0.15);\n}\n.checkbox-item[_ngcontent-%COMP%]   input[type=checkbox][_ngcontent-%COMP%] {\n  position: absolute;\n  opacity: 0;\n  cursor: pointer;\n}\n.checkbox-item[_ngcontent-%COMP%]   label[_ngcontent-%COMP%] {\n  font-weight: 500;\n  color: #374151;\n  cursor: pointer;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  gap: 10px;\n  margin: 0;\n  position: relative;\n  padding-left: 30px;\n}\n.checkbox-item[_ngcontent-%COMP%]   label[_ngcontent-%COMP%]::before {\n  content: "";\n  position: absolute;\n  left: 0;\n  top: 50%;\n  transform: translateY(-50%);\n  width: 20px;\n  height: 20px;\n  border: 2px solid #d1d5db;\n  border-radius: 6px;\n  background: white;\n  transition: all 0.3s ease;\n}\n.checkbox-item[_ngcontent-%COMP%]   input[type=checkbox][_ngcontent-%COMP%]:checked    + label[_ngcontent-%COMP%]::before {\n  background:\n    linear-gradient(\n      135deg,\n      #06b6d4,\n      #0891b2);\n  border-color:\n    linear-gradient(\n      135deg,\n      #06b6d4,\n      #0891b2);\n}\n.checkbox-item[_ngcontent-%COMP%]   label[_ngcontent-%COMP%]::after {\n  content: "\\f00c";\n  font-family: "Font Awesome 6 Free";\n  font-weight: 900;\n  position: absolute;\n  left: 4px;\n  top: 50%;\n  transform: translateY(-50%);\n  color: white;\n  font-size: 12px;\n  opacity: 0;\n  transition: all 0.3s ease;\n}\n.checkbox-item[_ngcontent-%COMP%]   input[type=checkbox][_ngcontent-%COMP%]:checked    + label[_ngcontent-%COMP%]::after {\n  opacity: 1;\n}\n.checkbox-item[_ngcontent-%COMP%]   input[type=checkbox][_ngcontent-%COMP%]:checked    + label[_ngcontent-%COMP%] {\n  color:\n    linear-gradient(\n      135deg,\n      #06b6d4,\n      #0891b2);\n}\n.card-footer[_ngcontent-%COMP%] {\n  padding: 25px 40px;\n  background: rgba(248, 250, 252, 0.8);\n  border-top: 1px solid #e5e7eb;\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n}\n.btn[_ngcontent-%COMP%] {\n  padding: 12px 30px;\n  border-radius: 12px;\n  font-weight: 600;\n  font-size: 16px;\n  border: none;\n  cursor: pointer;\n  transition: all 0.3s ease;\n  text-decoration: none;\n  display: inline-flex;\n  align-items: center;\n  gap: 8px;\n  position: relative;\n  overflow: hidden;\n}\n.btn[_ngcontent-%COMP%]::before {\n  content: "";\n  position: absolute;\n  top: 0;\n  left: -100%;\n  width: 100%;\n  height: 100%;\n  background:\n    linear-gradient(\n      90deg,\n      transparent,\n      rgba(255, 255, 255, 0.2),\n      transparent);\n  transition: left 0.5s;\n}\n.btn[_ngcontent-%COMP%]:hover::before {\n  left: 100%;\n}\n.btn-info[_ngcontent-%COMP%] {\n  background:\n    linear-gradient(\n      135deg,\n      #06b6d4,\n      #0891b2);\n  color: white;\n  box-shadow: 0 4px 15px rgba(6, 182, 212, 0.3);\n}\n.btn-info[_ngcontent-%COMP%]:hover {\n  background:\n    linear-gradient(\n      135deg,\n      #0891b2,\n      #0e7490);\n  transform: translateY(-2px);\n  box-shadow: 0 8px 25px rgba(6, 182, 212, 0.4);\n}\n.btn-danger[_ngcontent-%COMP%] {\n  background:\n    linear-gradient(\n      135deg,\n      #ef4444,\n      #dc2626);\n  color: white;\n  box-shadow: 0 4px 15px rgba(239, 68, 68, 0.3);\n}\n.btn-danger[_ngcontent-%COMP%]:hover {\n  background:\n    linear-gradient(\n      135deg,\n      #dc2626,\n      #b91c1c);\n  transform: translateY(-2px);\n  box-shadow: 0 8px 25px rgba(239, 68, 68, 0.4);\n}\n.field-validation-error[_ngcontent-%COMP%] {\n  color: #ef4444;\n  font-size: 14px;\n  margin-top: 5px;\n  display: block;\n  animation: _ngcontent-%COMP%_shake 0.5s ease-in-out;\n}\n@keyframes _ngcontent-%COMP%_shake {\n  0%, 100% {\n    transform: translateX(0);\n  }\n  25% {\n    transform: translateX(-5px);\n  }\n  75% {\n    transform: translateX(5px);\n  }\n}\n.loading[_ngcontent-%COMP%] {\n  position: relative;\n  pointer-events: none;\n}\n.loading[_ngcontent-%COMP%]::after {\n  content: "";\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n  width: 20px;\n  height: 20px;\n  border: 2px solid transparent;\n  border-top: 2px solid white;\n  border-radius: 50%;\n  animation: _ngcontent-%COMP%_spin 1s linear infinite;\n}\n@keyframes _ngcontent-%COMP%_spin {\n  to {\n    transform: translate(-50%, -50%) rotate(360deg);\n  }\n}\n@media (max-width: 768px) {\n  .container-fluid[_ngcontent-%COMP%] {\n    padding: 10px;\n  }\n  .card-body[_ngcontent-%COMP%] {\n    padding: 20px;\n  }\n  .checkbox-group[_ngcontent-%COMP%] {\n    grid-template-columns: 1fr;\n  }\n  .card-footer[_ngcontent-%COMP%] {\n    padding: 20px;\n    flex-direction: column;\n    gap: 10px;\n  }\n  .btn[_ngcontent-%COMP%] {\n    width: 100%;\n    justify-content: center;\n  }\n}\n.success-message[_ngcontent-%COMP%] {\n  background:\n    linear-gradient(\n      135deg,\n      #10b981,\n      #059669);\n  color: white;\n  padding: 15px 20px;\n  border-radius: 12px;\n  margin-bottom: 20px;\n  display: none;\n  animation: _ngcontent-%COMP%_slideInDown 0.5s ease;\n}\n@keyframes _ngcontent-%COMP%_slideInDown {\n  from {\n    opacity: 0;\n    transform: translateY(-20px);\n  }\n  to {\n    opacity: 1;\n    transform: translateY(0);\n  }\n}\n@media (min-width: 1024px) {\n  .card-body[_ngcontent-%COMP%] {\n    display: flex;\n    flex-direction: row;\n    flex-wrap: wrap;\n    gap: 24px;\n  }\n  .form-group[_ngcontent-%COMP%] {\n    flex: 1 1 45%;\n  }\n}\n.col-1-5[_ngcontent-%COMP%] {\n  flex: 0 0 12.5%;\n  max-width: 12.5%;\n}\n/*# sourceMappingURL=add-product.css.map */'], changeDetection: 0 });
+};
+(() => {
+  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(AddProduct, [{
+    type: Component,
+    args: [{ selector: "app-add-product", imports: [CommonModule, ReactiveFormsModule], changeDetection: ChangeDetectionStrategy.OnPush, template: '<!-- Converted version with Angular Reactive Forms support -->\n<form [formGroup]="productForm" (ngSubmit)="onSubmit()">\n  <div class="card-body row" style="gap: 0">\n    <!-- User Name -->\n    <div class="form-group row">\n      <label for="userName" class="col-sm-3 col-form-label">\n        <i class="fas fa-user"></i> Product Name\n      </label>\n      <div class="col-sm-7">\n        <div class="input-group">\n          <input\n            type="text"\n            class="form-control"\n            id="userName"\n            placeholder="Enter product name"\n            formControlName="productName"\n          />\n        </div>\n      </div>\n    </div>\n\n    <!-- Email -->\n    <div class="form-group row">\n      <label for="email" class="col-sm-3 col-form-label">\n        <i class="fas fa-envelope"></i> HSN Code\n      </label>\n      <div class="col-sm-7">\n        <div class="input-group">\n          <input\n            type="text"\n            class="form-control"\n            id="email"\n            placeholder="Enter HSN code"\n            formControlName="HSNcode"\n          />\n          \n        </div>\n      </div>\n    </div>\n\n    <!-- Mobile No -->\n    <div class="form-group row">\n      <label for="mobileNo" class="col-sm-3 col-form-label">\n        <i class="fas fa-phone"></i> Product Price\n      </label>\n      <div class="col-sm-7">\n        <div class="input-group">\n          <input\n            type="number"\n            class="form-control"\n            id="mobileNo"\n            placeholder="Enter Price"\n            formControlName="productPrice"\n          />\n        </div>\n      </div>\n    </div>\n\n\n    <!-- Role -->\n    <div class="form-group row">\n      <label for="userRoleId" class="col-sm-3 col-form-label">\n        <i class="fas fa-user-tag"></i> Product Catagory\n      </label>\n      <div class="col-sm-7">\n        <select\n          class="form-control select2"\n          id="userRoleId"\n          formControlName="catagoryName"\n        >\n          <option value="">Select Catagory</option>\n          <option value="Yellow">Yellow</option>\n          <option value="Orange">Orange</option>\n          <option value="Golden">Golden</option>\n          <option value="Red">Red</option>\n          <option value="Magenta">Magenta</option>\n          <option value="Blue">Blue</option>\n          <option value="Black">Black</option>\n          <option value="Matching">Matching</option>\n          <option value="Scarlet">Scarlet</option>\n        </select>\n      </div>\n    </div>\n\n    <!-- Company -->\n    <div class="form-group row">\n      <label for="companyId" class="col-1-5 mx-0 col-form-label">\n        <i class="fas fa-building"></i> Company \n      </label>\n      <div class="col-sm-7">\n        <select\n          class="form-control select2"\n          id="companyId"\n          formControlName="companyName"\n        >\n          <option value="">Select Company</option>\n          <option value="Navrang">Navrang</option>\n          <option value="Navkar">Navkar</option>\n          <option value="Navtex">Navtex</option>\n        </select>\n      </div>\n    </div>\n\n    \n  </div>\n\n  <div class="card-footer d-flex justify-content-between align-items-center">\n    <button type="submit" class="btn btn-info mb-0">\n      <i class="fas fa-save"></i> Add Product\n    </button>\n    <a routerLink="/users" class="btn btn-danger ms-auto">\n      <i class="fas fa-times"></i> Cancel\n    </a>\n  </div>\n</form>\n', styles: ['/* src/app/components/add-product/add-product.css */\n* {\n  margin: 0;\n  padding: 0;\n  box-sizing: border-box;\n}\nbody {\n  font-family:\n    "Inter",\n    -apple-system,\n    BlinkMacSystemFont,\n    "Segoe UI",\n    Roboto,\n    Oxygen,\n    Ubuntu,\n    Cantarell,\n    sans-serif;\n  min-height: 100vh;\n  padding: 20px;\n  color: #333;\n}\n.container-fluid {\n  max-width: 1200px;\n  margin: 0 auto;\n}\n.card {\n  background: rgba(255, 255, 255, 0.95);\n  -webkit-backdrop-filter: blur(20px);\n  backdrop-filter: blur(20px);\n  border-radius: 20px;\n  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);\n  border: 1px solid rgba(255, 255, 255, 0.2);\n  height: auto;\n  overflow: hidden;\n  transition: all 0.5s ease;\n}\n.card:hover {\n  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2);\n  transform: translateY(-5px);\n}\n.card-header {\n  background:\n    linear-gradient(\n      135deg,\n      #06b6d4,\n      #0891b2);\n  color: white;\n  padding: 25px 30px;\n  border: none;\n  position: relative;\n  overflow: hidden;\n}\n.card-header::before {\n  content: "";\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 70%;\n  background:\n    linear-gradient(\n      45deg,\n      transparent 30%,\n      rgba(255, 255, 255, 0.1) 50%,\n      transparent 70%);\n  transform: translateX(-100%);\n  transition: transform 0.6s;\n}\n.card:hover .card-header::before {\n  transform: translateX(100%);\n}\n.card-title {\n  font-size: 24px;\n  font-weight: 600;\n  margin: 0;\n  display: flex;\n  align-items: center;\n  gap: 10px;\n}\n.card-title::before {\n  content: "\\f007";\n  font-family: "Font Awesome 6 Free";\n  font-weight: 900;\n  font-size: 20px;\n}\n.card-body {\n  padding: 20px;\n}\n.form-group {\n  margin-bottom: 25px;\n  opacity: 0;\n  animation: slideInUp 0.6s ease forwards;\n  text-align: center;\n}\n.form-group:nth-child(1) {\n  animation-delay: 0.1s;\n}\n.form-group:nth-child(2) {\n  animation-delay: 0.2s;\n}\n.form-group:nth-child(3) {\n  animation-delay: 0.3s;\n}\n.form-group:nth-child(4) {\n  animation-delay: 0.4s;\n}\n.form-group:nth-child(5) {\n  animation-delay: 0.5s;\n}\n.form-group:nth-child(6) {\n  animation-delay: 0.6s;\n}\n.form-group:nth-child(7) {\n  animation-delay: 0.7s;\n}\n@keyframes slideInUp {\n  from {\n    opacity: 0;\n    transform: translateY(30px);\n  }\n  to {\n    opacity: 1;\n    transform: translateY(0);\n  }\n}\n.col-form-label {\n  font-weight: 600;\n  color: #374151;\n  font-size: 14px;\n  text-transform: uppercase;\n  letter-spacing: 0.5px;\n  margin-bottom: 8px;\n  display: flex;\n  align-items: center;\n  gap: 8px;\n  text-align: center;\n}\n.form-control,\n.select2 {\n  height: 50px;\n  border: 2px solid #e5e7eb;\n  border-radius: 12px;\n  padding: 0 16px;\n  font-size: 16px;\n  transition: all 0.3s ease;\n  background: rgba(255, 255, 255, 0.8);\n  -webkit-backdrop-filter: blur(10px);\n  backdrop-filter: blur(10px);\n}\n.form-control:focus,\n.select2:focus {\n  border-color:\n    linear-gradient(\n      135deg,\n      #06b6d4,\n      #0891b2);\n  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);\n  outline: none;\n  background: white;\n  transform: translateY(-2px);\n}\n.form-control:hover,\n.select2:hover {\n  border-color: #9ca3af;\n  background: white;\n}\n.input-group {\n  position: relative;\n}\n.input-icon {\n  position: absolute;\n  right: 15px;\n  top: 50%;\n  transform: translateY(-50%);\n  color: #9ca3af;\n  transition: color 0.3s ease;\n  z-index: 10;\n}\n.form-control:focus + .input-icon {\n  color: #17A2B8;\n}\n.menu-access-section {\n  background:\n    linear-gradient(\n      135deg,\n      #f8fafc 0%,\n      #e2e8f0 100%);\n  border-radius: 16px;\n  padding: 25px;\n  margin-top: 20px;\n  border: 1px solid #e2e8f0;\n}\n.menu-access-title {\n  font-size: 18px;\n  font-weight: 600;\n  color: #1e293b;\n  margin-bottom: 20px;\n  text-align: center;\n  position: relative;\n}\n.menu-access-title::after {\n  content: "";\n  position: absolute;\n  bottom: -8px;\n  left: 50%;\n  transform: translateX(-50%);\n  width: 60px;\n  height: 3px;\n  background:\n    linear-gradient(\n      135deg,\n      #06b6d4,\n      #0891b2);\n  border-radius: 2px;\n}\n.checkbox-group {\n  display: grid;\n  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));\n  gap: 15px;\n  margin-bottom: 20px;\n  width: 100%;\n}\n.checkbox-item {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  background: white;\n  border-radius: 12px;\n  padding: 15px 20px;\n  border: 2px solid transparent;\n  transition: all 0.3s ease;\n  cursor: pointer;\n  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);\n  text-align: center;\n}\n.checkbox-item:hover {\n  border-color:\n    linear-gradient(\n      135deg,\n      #06b6d4,\n      #0891b2);\n  transform: translateY(-2px);\n  box-shadow: 0 8px 25px rgba(79, 70, 229, 0.15);\n}\n.checkbox-item input[type=checkbox] {\n  position: absolute;\n  opacity: 0;\n  cursor: pointer;\n}\n.checkbox-item label {\n  font-weight: 500;\n  color: #374151;\n  cursor: pointer;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  gap: 10px;\n  margin: 0;\n  position: relative;\n  padding-left: 30px;\n}\n.checkbox-item label::before {\n  content: "";\n  position: absolute;\n  left: 0;\n  top: 50%;\n  transform: translateY(-50%);\n  width: 20px;\n  height: 20px;\n  border: 2px solid #d1d5db;\n  border-radius: 6px;\n  background: white;\n  transition: all 0.3s ease;\n}\n.checkbox-item input[type=checkbox]:checked + label::before {\n  background:\n    linear-gradient(\n      135deg,\n      #06b6d4,\n      #0891b2);\n  border-color:\n    linear-gradient(\n      135deg,\n      #06b6d4,\n      #0891b2);\n}\n.checkbox-item label::after {\n  content: "\\f00c";\n  font-family: "Font Awesome 6 Free";\n  font-weight: 900;\n  position: absolute;\n  left: 4px;\n  top: 50%;\n  transform: translateY(-50%);\n  color: white;\n  font-size: 12px;\n  opacity: 0;\n  transition: all 0.3s ease;\n}\n.checkbox-item input[type=checkbox]:checked + label::after {\n  opacity: 1;\n}\n.checkbox-item input[type=checkbox]:checked + label {\n  color:\n    linear-gradient(\n      135deg,\n      #06b6d4,\n      #0891b2);\n}\n.card-footer {\n  padding: 25px 40px;\n  background: rgba(248, 250, 252, 0.8);\n  border-top: 1px solid #e5e7eb;\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n}\n.btn {\n  padding: 12px 30px;\n  border-radius: 12px;\n  font-weight: 600;\n  font-size: 16px;\n  border: none;\n  cursor: pointer;\n  transition: all 0.3s ease;\n  text-decoration: none;\n  display: inline-flex;\n  align-items: center;\n  gap: 8px;\n  position: relative;\n  overflow: hidden;\n}\n.btn::before {\n  content: "";\n  position: absolute;\n  top: 0;\n  left: -100%;\n  width: 100%;\n  height: 100%;\n  background:\n    linear-gradient(\n      90deg,\n      transparent,\n      rgba(255, 255, 255, 0.2),\n      transparent);\n  transition: left 0.5s;\n}\n.btn:hover::before {\n  left: 100%;\n}\n.btn-info {\n  background:\n    linear-gradient(\n      135deg,\n      #06b6d4,\n      #0891b2);\n  color: white;\n  box-shadow: 0 4px 15px rgba(6, 182, 212, 0.3);\n}\n.btn-info:hover {\n  background:\n    linear-gradient(\n      135deg,\n      #0891b2,\n      #0e7490);\n  transform: translateY(-2px);\n  box-shadow: 0 8px 25px rgba(6, 182, 212, 0.4);\n}\n.btn-danger {\n  background:\n    linear-gradient(\n      135deg,\n      #ef4444,\n      #dc2626);\n  color: white;\n  box-shadow: 0 4px 15px rgba(239, 68, 68, 0.3);\n}\n.btn-danger:hover {\n  background:\n    linear-gradient(\n      135deg,\n      #dc2626,\n      #b91c1c);\n  transform: translateY(-2px);\n  box-shadow: 0 8px 25px rgba(239, 68, 68, 0.4);\n}\n.field-validation-error {\n  color: #ef4444;\n  font-size: 14px;\n  margin-top: 5px;\n  display: block;\n  animation: shake 0.5s ease-in-out;\n}\n@keyframes shake {\n  0%, 100% {\n    transform: translateX(0);\n  }\n  25% {\n    transform: translateX(-5px);\n  }\n  75% {\n    transform: translateX(5px);\n  }\n}\n.loading {\n  position: relative;\n  pointer-events: none;\n}\n.loading::after {\n  content: "";\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n  width: 20px;\n  height: 20px;\n  border: 2px solid transparent;\n  border-top: 2px solid white;\n  border-radius: 50%;\n  animation: spin 1s linear infinite;\n}\n@keyframes spin {\n  to {\n    transform: translate(-50%, -50%) rotate(360deg);\n  }\n}\n@media (max-width: 768px) {\n  .container-fluid {\n    padding: 10px;\n  }\n  .card-body {\n    padding: 20px;\n  }\n  .checkbox-group {\n    grid-template-columns: 1fr;\n  }\n  .card-footer {\n    padding: 20px;\n    flex-direction: column;\n    gap: 10px;\n  }\n  .btn {\n    width: 100%;\n    justify-content: center;\n  }\n}\n.success-message {\n  background:\n    linear-gradient(\n      135deg,\n      #10b981,\n      #059669);\n  color: white;\n  padding: 15px 20px;\n  border-radius: 12px;\n  margin-bottom: 20px;\n  display: none;\n  animation: slideInDown 0.5s ease;\n}\n@keyframes slideInDown {\n  from {\n    opacity: 0;\n    transform: translateY(-20px);\n  }\n  to {\n    opacity: 1;\n    transform: translateY(0);\n  }\n}\n@media (min-width: 1024px) {\n  .card-body {\n    display: flex;\n    flex-direction: row;\n    flex-wrap: wrap;\n    gap: 24px;\n  }\n  .form-group {\n    flex: 1 1 45%;\n  }\n}\n.col-1-5 {\n  flex: 0 0 12.5%;\n  max-width: 12.5%;\n}\n/*# sourceMappingURL=add-product.css.map */\n'] }]
+  }], () => [{ type: ProductService }, { type: FormBuilder }, { type: Router }], null);
+})();
+(() => {
+  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(AddProduct, { className: "AddProduct", filePath: "src/app/components/add-product/add-product.ts", lineNumber: 14 });
+})();
+export {
+  AddProduct
+};
+//# sourceMappingURL=chunk-2BNF6WMU.js.map
